@@ -8,15 +8,20 @@
 - [ ] All planned tests pass
 - [ ] Lint / typecheck / static analysis clean
 
-### Commands run
+### Checks
 
-<!-- List the exact verification commands and their results. -->
+<!-- One entry per planned check from plan.md's final verification
+intent. Record every check's type, exact command, exit code, and
+outcome. -->
 
-```
-<!-- command -->
-<!-- output or result -->
-```
+#### Check: <!-- check description -->
+
+- **Type:** <!-- unit | integration | build | lint | validation | inspection | configuration -->
+- **Command:** <!-- exact command executed -->
+- **Exit code:** <!-- 0 / nonzero / NOT RUN -->
+- **Outcome:** <!-- PASS / FAIL / BLOCKED -->
 
 ### Outcome
 
-<!-- PASS / FAIL and any notes. -->
+<!-- Overall PASS / FAIL. Record PASS only when every planned check
+passed. -->

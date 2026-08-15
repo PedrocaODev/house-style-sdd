@@ -1,5 +1,5 @@
 name: house-style
-version: 2
+version: 3
 description: Global house-style workflow pack for OpenSpec and OpenCode
 
 artifacts:
@@ -11,6 +11,10 @@ artifacts:
       Write a concise proposal. Explain the problem or opportunity,
       list concrete changes, identify new or modified capabilities,
       and note impact, risks, and scope boundaries.
+      If the change has no spec-level behavior change (pure refactor,
+      tooling, docs), leave capabilities empty and set
+      `skip_specs: true` in the change's `.openspec.yaml` instead of
+      inventing a requirement to satisfy validation.
     requires: []
 
   - id: design
@@ -28,9 +32,17 @@ artifacts:
     description: Delta specifications for changed capabilities
     template: spec.md
     instruction: >
-      Write one delta spec per changed capability. For each requirement
-      use ADDED, MODIFIED, or REMOVED sections with Given/When/Then
-      scenarios as acceptance criteria.
+      Write one delta spec per changed capability. Each requirement
+      uses SHALL/MUST normative language and lives under an ADDED,
+      MODIFIED, or REMOVED section with Given/When/Then scenarios as
+      acceptance criteria. Scenarios MUST use exactly four hashtags
+      (`#### Scenario:`); three hashtags or bullets fail silently.
+      A MODIFIED block replaces the whole requirement: copy the full
+      current block (text plus all scenarios) from the main spec, then
+      edit — omitting a scenario the main spec still has fails
+      validation. New capabilities open the delta with a `## Purpose`
+      section of at least 50 characters; do not add Purpose to a delta
+      for an existing capability.
     requires: [design]
 
   - id: tasks
@@ -60,8 +72,10 @@ artifacts:
     template: verify.md
     instruction: >
       Record the final verification run. List pre-conditions (review
-      complete, tests pass, lint clean), the exact commands executed
-      with results, and the overall outcome.
+      complete, tests pass, lint clean), then one entry per planned
+      check with its type, exact command, exit code, and outcome.
+      Record an overall passing outcome only when every planned check
+      passes.
     requires: [plan]
 
   - id: retrospective
@@ -71,7 +85,7 @@ artifacts:
     instruction: >
       Write a brief closeout. Summarize what shipped, what went well,
       what to watch next time, and any concrete follow-ups.
-    requires: [plan]
+    requires: [plan, verify]
 
 apply:
   requires: [plan]

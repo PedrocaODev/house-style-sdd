@@ -1,6 +1,6 @@
-# house-style-sdd
+# Witness Schema
 
-Installed global OpenSpec `house-style` schema bundle (version 3).
+Installed global OpenSpec `Witness` schema bundle (version 3).
 
 Includes `schema.yaml` and templates (`proposal`, `design`, `spec`,
 `tasks`, `plan`, `verify`, `retrospective`).
@@ -10,7 +10,7 @@ with `retrospective` requiring both `plan` and `verify` — the schema
 blocks archive closeout until the verification record exists.
 `apply` requires `plan` and tracks progress in `tasks.md`.
 
-Meant to be installed under `~/.local/share/openspec/schemas/house-style`.
+Meant to be installed under `~/.local/share/openspec/schemas/witness`.
 
 Companion global OpenCode commands and skills live in the separate
 [`config-opencode`](~/.config/opencode) repo.
